@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="author" content="ArunKumar M">
+    <meta name="viewport" content="width = device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="Form.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins&family=Great+Vibes&display=swap&family=Josefin+Slab:wght@700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="root">
+        <form name="myForm" onsubmit="return myFunction()">
+            <h1>Data Form</h1>
+            <div class="detailsBox">
+                <div class="input" title="First Name">FirstName</div>
+                <input type="text" id="firstName" value="" class="details" placeholder="Enter the First name here"
+                    required>
+            </div>
+            <div class="detailsBox">
+                <div class="input" title="Last Name">LastName</div>
+                <input type="text" id="lastName" value="" class="details" placeholder="Enter the Last name here">
+            </div>
+            <div class="detailsBox">
+                <div class="input" title="Email-id">Email-Id</div>
+                <input type="text" id="mail" value="" class="details" placeholder="Enter the Mail id here" required>
+            </div>
+            <div class="detailsBox">
+                <div class="input" title="Phoen Number">PhoneNumber</div>
+                <input type="text" id="PhoneNumber" value="" class="details" placeholder="Enter the PhoneNumber here"
+                    required>
+            </div>
+            <div class="detailsBox">
+                <div class="input" title="Date of Birth">DateOfBirth</div>
+                <input type="date" id="dob" value="" class="details" required>
+            </div>
+            <div class="detailsBox">
+                <div class="input" title="Gender">Gender</div>
+                <input type="radio" value="Male" name="Gender" class="radioCheck" required>
+                <label>Male</label>
+                <input type="radio" value="Female" name="Gender" class="radioCheck" required>
+                <label>Female</label>
+            </div>
+            <div class="detailsBox">
+                <div class="input" title="Designation">Designation</div>
+                <select name="designation" id="designation" class="details">
+                    <option value="" disabled selected>Select your designation</option>
+                    <option value="Fresher">Fresher</option>
+                    <option value="Trainer">Trainer</option>
+                    <option value="TeamLead">TeamLead</option>
+                    <option value="ProjectManager">ProjectManager</option>
+                </select>
+            </div>
+            <div class="detailsBox">
+                <div class="input" title="Language Known">Language Known</div>
+                <input type="checkbox" class="lang" name="lang1" value="English">
+                <label for="lang1">English</label>
+                <input type="checkbox" class="lang" name="lang2" value="Tamil">
+                <label for="lang2">Tamil</label>
+                <input type="checkbox" class="lang" name="lang3" value="Hindi">
+                <label for="lang3">Hindi</label>
+                <input type="checkbox" class="lang" name="lang4" value="French">
+                <label for="lang4">French</label><br>
+            </div>
+            <br><input type="submit" value="Submit" title="Submit Form" class="submit">
+        </form>
+    </div>
+    <script src="Form.js"></script>
+</body>
+
+</html>
