@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="author" content="ArunKumar M">
+    <meta name="viewport" content="width = device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+    <link rel="stylesheet" href="ToDo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins&family=Great+Vibes&display=swap&family=Josefin+Slab:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+</head>
+
+<body onload="time()">
+    <div class="menu-bar">
+        <a href="">
+            <span class="material-symbols-outlined menu-icon">
+                apps
+            </span>
+        </a>
+        <div>
+            <span class="to-do"><a href="" class="to-do-link">To Do</a></span>
+        </div>
+        <div id="search">
+            <a href="#searchText">
+                <i class="fa fa-search search-icon"></i>
+                <input type="text" id="searchText" onfocus='textdisplay()' onblur="textEmpty()">
+                <span id="cancelSearch" onclick='cancel(); return false'></span>
+            </a>
+        </div>
+
+    </div>
+
+    <div class="add">
+        <span id="date"></span>
+        <span id="time"></span><br><br>
+        <input type="text" id="input" placeholder="Add Your Task Here" value="">
+        <button onclick="addtodolist()" class="add-list">Add Task</button>
+        <div id="todoList">
+            <h3>TODO-LIST</h3>
+            <span id="todocount"></span>
+        </div>
+        <div id="completedList">
+            <h3>COMPLETED-LIST</h3>
+            <span id="todocount"></span>
+        </div>
+        <script src="ToDo.js"></script>
+    </div>
+</body>
+
+</html>
