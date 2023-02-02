@@ -120,23 +120,30 @@ input:focus {
 li {
     position: relative;
     width: 80%;
+    contain: content;
     margin-top: 1.5%;
-    padding-left: 5%;
-    padding-top: 0.5%;
+    padding: 0.5% 8% 0% 5%;
     height: 30px;
     box-shadow: 2px 0px 8px 0px grey;
     border-radius: 5px;
     list-style-type: none;
 }
 
+.text {
+    width: 90%;
+    contain: content;
+}
+
+span:focus {
+    outline: none;
+}
+
 #checkBox {
     position: absolute;
-    left: 0%;
+    left: 1.5%;
+    top: 20%;
     border: 1px solid black;
     display: inline-block;
-    margin-top: 0.8%;
-    margin-left: 1%;
-    border-radius: 50%;
     height: 15px;
     width: 15px;
 }
@@ -153,10 +160,27 @@ li {
 
 .delIcon {
     position: absolute;
-    left: 100%;
+    left: 97%;
+    top: 25%;
     display: inline-block;
-    margin-top: 0.8%;
-    margin-left: 1%;
+    height: 15px;
+    width: 15px;
+}
+
+.editIcon {
+    position: absolute;
+    left: 93%;
+    top: 25%;
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+}
+
+.saveIcon {
+    position: absolute;
+    left: 96%;
+    top: 25%;
+    display: inline-block;
     height: 15px;
     width: 15px;
 }
