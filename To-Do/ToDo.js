@@ -32,7 +32,7 @@ function addtodolist(value) {
         const checkBox = document.createElement("input");
         checkBox.setAttribute('type', 'checkbox');
         checkBox.setAttribute('id', 'checkBox');
-        checkBox.setAttribute('value', task)
+        checkBox.setAttribute('value', task);
         checkBox.setAttribute('onchange', 'complete(value,checked,this)');
         list.appendChild(checkBox);
         const editIcon = document.createElement('i');
@@ -41,7 +41,7 @@ function addtodolist(value) {
         list.appendChild(editIcon);
         const deleteIcon = document.createElement('i');
         deleteIcon.setAttribute('class', 'fa fa-trash delIcon');
-        deleteIcon.setAttribute('onClick', 'deleteList(this)');
+        deleteIcon.setAttribute('onClick', 'customcreation(this)');
         list.appendChild(deleteIcon);
         const saveIcon = document.createElement('i');
         saveIcon.className = "fa fa-save saveIcon";
@@ -66,20 +66,16 @@ function edit(element) {
     saveIcon.style.display = 'block';
 }
 function save(element) {
-    element.parentElement.childNodes[0].contentEditable = false;
-    const editIcon = element.parentElement.childNodes[2];
-    editIcon.style.display = 'block';
-    const deleteIcon = element.parentElement.childNodes[3];
-    deleteIcon.style.display = 'block';
-    const saveIcon = element.parentElement.childNodes[4];
-    saveIcon.style.display = 'none';
+    if (element.parentElement.childNodes[0].innerText != "") {
+        element.parentElement.childNodes[0].contentEditable = false;
+        const editIcon = element.parentElement.childNodes[2];
+        editIcon.style.display = 'block';
+        const deleteIcon = element.parentElement.childNodes[3];
+        deleteIcon.style.display = 'block';
+        const saveIcon = element.parentElement.childNodes[4];
+        saveIcon.style.display = 'none';
+    } else { alert("Don't Leave the do to list empty") }
 }
-function deleteList(element) {
-    if (confirm("Want to delete task permently ???")) {
-        element.parentElement.remove();
-    }
-}
-
 function complete(value, checked, element) {
     if (checked) {
         element.parentElement.remove();
@@ -98,15 +94,24 @@ function complete(value, checked, element) {
         list.appendChild(checkBox);
         const deleteIcon = document.createElement('i');
         deleteIcon.setAttribute('class', 'fa fa-trash delIcon');
-        deleteIcon.setAttribute('onClick', 'deleteList(this)');
+        deleteIcon.setAttribute('onClick', 'customcreation(this)');
         list.appendChild(deleteIcon);
         document.getElementById("completedList").appendChild(list);
+        let count = document.getElementById('completedList').childElementCount - 1;
+        document.getElementById('completedcount').innerText = "(" + count + ")";
+        if (count >= 1) document.getElementById('completedList').style.display = "block";
     }
 }
 function toDO(value, checked, element) {
     if (!checked) {
         element.parentElement.remove();
         addtodolist(value);
+        let count = document.getElementById('completedList').childElementCount - 1;
+        document.getElementById('completedcount').innerText = "(" + count + ")";
+        if (count == '') {
+            document.getElementById('completedcount').innerText = '';
+            document.getElementById('completedList').style.display = "none";
+        }
     }
 }
 function textdisplay() {
@@ -121,4 +126,45 @@ function cancel() {
     document.getElementById('searchText').value = '';
     document.getElementById('searchText').setAttribute('placeholder', '');
     document.getElementById('cancelSearch').innerHTML = '';
+}
+function customcreation(element) {
+    document.getElementById("menu-bar").style.opacity = "0.5";
+    document.getElementById("todoList").style.opacity = "0.5";
+    document.getElementById("completedList").style.opacity = "0.5";
+    const container = document.createElement("div");
+    container.id = "warning";
+    const root = document.getElementById("add");
+    root.appendChild(container);
+    const top = document.createElement("div");
+    top.className = "content";
+    const header = document.createElement("header");
+    header.innerText = "Delete task";
+    top.appendChild(header);
+    container.appendChild(top);
+    const main = document.createElement("div");
+    const contant = document.createElement("p");
+    contant.innerText = "Want to delete task?";
+    main.appendChild(contant);
+    container.appendChild(main);
+    const yes = document.createElement("button");
+    const no = document.createElement("button");
+    yes.innerText = "yes";
+    no.innerText = "no";
+    yes.addEventListener('click', function () {
+        document.getElementById("warning").remove();
+        element.parentElement.remove();
+        document.getElementById("menu-bar").style.opacity = "1";
+        document.getElementById("todoList").style.opacity = "1";
+        document.getElementById("completedList").style.opacity = "1";
+    });
+    no.addEventListener('click', function () {
+        document.getElementById("warning").remove();
+        document.getElementById("menu-bar").style.opacity = "1";
+        document.getElementById("todoList").style.opacity = "1";
+        document.getElementById("completedList").style.opacity = "1";
+    });
+    const footer = document.createElement("footer");
+    footer.appendChild(yes);
+    footer.appendChild(no);
+    container.appendChild(footer);
 }

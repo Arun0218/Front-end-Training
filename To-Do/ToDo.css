@@ -4,7 +4,7 @@ body {
     font-family: Segoe, "Segoe UI", Arial, "sans-serif";
 }
 
-.menu-bar {
+#menu-bar {
     position: relative;
     border: 1px solid black;
     height: 45px;
@@ -87,7 +87,7 @@ input:focus {
     text-decoration: underline;
 }
 
-.add {
+#add {
     position: relative;
     margin-top: 5%;
     margin-left: 20%;
@@ -115,6 +115,7 @@ input:focus {
 
 #completedList {
     width: 100%;
+    display: none;
 }
 
 li {
@@ -183,4 +184,20 @@ span:focus {
     display: inline-block;
     height: 15px;
     width: 15px;
+}
+
+#todocount {
+    margin-left: 1%;
+}
+
+#warning {
+    position: absolute;
+    top: 5%;
+    left: 40%;
+    background-color: white;
+    background-color: rgb(193, 193, 193);
+    width: 25%;
+    contain: content;
+    text-align: center;
+    border-radius: 10px;
 }

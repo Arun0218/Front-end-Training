@@ -15,7 +15,7 @@
 </head>
 
 <body onload="time()">
-    <div class="menu-bar">
+    <div id="menu-bar">
         <a href="">
             <span class="material-symbols-outlined menu-icon">
                 apps
@@ -34,18 +34,16 @@
 
     </div>
 
-    <div class="add">
+    <div id="add">
         <span id="date"></span>
         <span id="time"></span><br><br>
         <input type="text" id="input" placeholder="Add Your Task Here" value="">
         <button onclick="addtodolist(document.getElementById('input').value)" class="add-list">Add Task</button>
         <div id="todoList">
-            <h3>TODO-LIST</h3>
-            <span id="todocount"></span>
+            <h3>TODO-LIST<span id="todocount"></span></h3>
         </div>
         <div id="completedList">
-            <h3>COMPLETED-LIST</h3>
-            <span id="todocount"></span>
+            <h3>COMPLETED-LIST<span id="completedcount"></span></h3>
         </div>
         <script src="ToDo.js"></script>
     </div>
