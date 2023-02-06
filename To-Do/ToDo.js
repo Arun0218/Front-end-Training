@@ -27,7 +27,7 @@ function addtodolist(value) {
         const text = document.createElement('span');
         text.innerText = value;
         let task = text.innerText;
-        task.className = 'text';
+        text.id = 'text';
         list.appendChild(text);
         const checkBox = document.createElement("input");
         checkBox.setAttribute('type', 'checkbox');
@@ -55,7 +55,6 @@ function addtodolist(value) {
     }
 }
 function edit(element) {
-    console.log(element.parentElement.childNodes);
     element.parentElement.childNodes[0].contentEditable = true;
     element.parentElement.childNodes[0].focus();
     const editIcon = element.parentElement.childNodes[2];
@@ -67,6 +66,8 @@ function edit(element) {
 }
 function save(element) {
     if (element.parentElement.childNodes[0].innerText != "") {
+        let editTask = element.parentElement.childNodes[0].innerText;
+        element.parentElement.childNodes[1].value = editTask;
         element.parentElement.childNodes[0].contentEditable = false;
         const editIcon = element.parentElement.childNodes[2];
         editIcon.style.display = 'block';
@@ -74,7 +75,9 @@ function save(element) {
         deleteIcon.style.display = 'block';
         const saveIcon = element.parentElement.childNodes[4];
         saveIcon.style.display = 'none';
-    } else { alert("Don't Leave the do to list empty") }
+    } else {
+        alert("Don't Leave the do to list empty"); element.parentElement.childNodes[0].focus();
+    }
 }
 function complete(value, checked, element) {
     if (checked) {
@@ -97,26 +100,24 @@ function complete(value, checked, element) {
         deleteIcon.setAttribute('onClick', 'customcreation(this)');
         list.appendChild(deleteIcon);
         document.getElementById("completedList").appendChild(list);
-        let count = document.getElementById('completedList').childElementCount - 1;
-        document.getElementById('completedcount').innerText = "(" + count + ")";
-        if (count >= 1) document.getElementById('completedList').style.display = "block";
+        completedDisplayCount();
     }
 }
 function toDO(value, checked, element) {
     if (!checked) {
         element.parentElement.remove();
         addtodolist(value);
-        let count = document.getElementById('completedList').childElementCount - 1;
-        document.getElementById('completedcount').innerText = "(" + count + ")";
-        if (count == '') {
-            document.getElementById('completedcount').innerText = '';
-            document.getElementById('completedList').style.display = "none";
-        }
+        completedDisplayCount();
     }
 }
 function textdisplay() {
     document.getElementById('searchText').setAttribute('placeholder', 'Seach');
     document.getElementById('cancelSearch').innerHTML = 'x';
+    const searchButton = document.createElement('button');
+    searchButton.id("searchButton");
+    dosument.getElementById('search').appendChild(search);
+
+
 }
 function textEmpty() {
     document.getElementById('searchText').setAttribute('placeholder', '');
@@ -128,13 +129,10 @@ function cancel() {
     document.getElementById('cancelSearch').innerHTML = '';
 }
 function customcreation(element) {
-    document.getElementById("menu-bar").style.opacity = "0.5";
-    document.getElementById("todoList").style.opacity = "0.5";
-    document.getElementById("completedList").style.opacity = "0.5";
+    const warningContainer = document.createElement("div");
+    warningContainer.id = "warningbg"
     const container = document.createElement("div");
     container.id = "warning";
-    const root = document.getElementById("add");
-    root.appendChild(container);
     const top = document.createElement("div");
     top.className = "content";
     const header = document.createElement("header");
@@ -150,21 +148,28 @@ function customcreation(element) {
     const no = document.createElement("button");
     yes.innerText = "yes";
     no.innerText = "no";
-    yes.addEventListener('click', function () {
-        document.getElementById("warning").remove();
-        element.parentElement.remove();
-        document.getElementById("menu-bar").style.opacity = "1";
-        document.getElementById("todoList").style.opacity = "1";
-        document.getElementById("completedList").style.opacity = "1";
-    });
-    no.addEventListener('click', function () {
-        document.getElementById("warning").remove();
-        document.getElementById("menu-bar").style.opacity = "1";
-        document.getElementById("todoList").style.opacity = "1";
-        document.getElementById("completedList").style.opacity = "1";
-    });
     const footer = document.createElement("footer");
     footer.appendChild(yes);
     footer.appendChild(no);
     container.appendChild(footer);
+    yes.addEventListener('click', function () {
+        document.getElementById("warningbg").remove();
+        element.parentElement.remove();
+        completedDisplayCount();
+    });
+    no.addEventListener('click', function () {
+        document.getElementById("warningbg").remove();
+    });
+    document.body.appendChild(warningContainer);
+    warningContainer.appendChild(container);
+}
+
+function completedDisplayCount() {
+    let count = document.getElementById('completedList').childElementCount - 1;
+    document.getElementById('completedcount').innerText = "(" + count + ")";
+    if (count >= 1) {
+        document.getElementById('completedList').style.display = "block";
+    } else {
+        document.getElementById('completedList').style.display = "none";
+    }
 }
